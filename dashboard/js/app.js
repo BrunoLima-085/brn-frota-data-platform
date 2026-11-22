@@ -295,7 +295,7 @@ function abaM() {
             corr: g.length ? sum(g, p => p.corretivas) / g.length : 0, taxa: g.length ? sum(g, p => p.bruscos_100km) / g.length : 0};
   });
   const suave = fx[0].custo, agr = fx[3].custo;
-  $("mCorrT").textContent = "Quem dirige pior gasta mais com corretiva";
+  $("mCorrT").textContent = "Condução mais agressiva anda junto com mais corretiva";
   $("mCorrAs").textContent = `correlação r = ${nf(pearson(pts.map(p => p.bruscos_100km), pts.map(p => p.custo_corretivo)), 2)}`;
   $("mCorrSub").innerHTML = `${agr > 0 ? `Faixa agressiva: <b>${brl(agr)}</b> de corretiva por veículo, contra <b>${brl(fx[1].custo)}</b> na moderada e <b>${brl(suave)}</b> na suave. ` : ""}Custo corretivo médio por veículo em cada faixa de condução (alertas de freada, aceleração e curva bruscas a cada 100 km; veículos com 500 km ou mais). Na frota toda, CORR() dá <b>r = ${nf(D.corr[2], 2)}</b>.`;
   barras("mCorr", fx.map(f => `${f.nome} (${f.n})`), fx.map((f, i) => ({nome: f.nome, cor: COR_FAIXA[i], vals: fx.map((_, j) => j === i ? Math.round(f.custo) : 0)})),
