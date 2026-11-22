@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BRN Frotas — Telemetria, Manutenção e Custos</title>
+<meta name="description" content="Dashboard da brn-frota-data-platform: dados fictícios tratados em bronze, silver e gold (Postgres/Supabase).">
+<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/painel.css">
+</head>
+<body>
+<div class="bgfleet" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice"><g opacity=".55"><rect x="0" y="270" width="62" height="120" fill="#7f9b96"/><rect x="70" y="210" width="62" height="180" fill="#7f9b96"/><rect x="120" y="300" width="62" height="90" fill="#7f9b96"/><rect x="210" y="180" width="62" height="210" fill="#7f9b96"/><rect x="260" y="250" width="62" height="140" fill="#7f9b96"/><rect x="340" y="220" width="62" height="170" fill="#7f9b96"/><rect x="420" y="290" width="62" height="100" fill="#7f9b96"/><rect x="470" y="160" width="62" height="230" fill="#7f9b96"/><rect x="560" y="240" width="62" height="150" fill="#7f9b96"/><rect x="640" y="270" width="62" height="120" fill="#7f9b96"/><rect x="700" y="190" width="62" height="200" fill="#7f9b96"/><rect x="780" y="230" width="62" height="160" fill="#7f9b96"/><rect x="860" y="280" width="62" height="110" fill="#7f9b96"/><rect x="930" y="200" width="62" height="190" fill="#7f9b96"/><rect x="1010" y="250" width="62" height="140" fill="#7f9b96"/><rect x="1080" y="170" width="62" height="220" fill="#7f9b96"/><rect x="1160" y="260" width="62" height="130" fill="#7f9b96"/><rect x="1230" y="220" width="62" height="170" fill="#7f9b96"/><rect x="1300" y="290" width="62" height="100" fill="#7f9b96"/><rect x="1380" y="190" width="62" height="200" fill="#7f9b96"/><rect x="1450" y="240" width="62" height="150" fill="#7f9b96"/><rect x="1530" y="270" width="62" height="120" fill="#7f9b96"/></g><rect x="0" y="392" width="1600" height="28" fill="#5f7f7a"/><rect x="10" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="106" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="202" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="298" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="394" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="490" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="586" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="682" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="778" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="874" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="970" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1066" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1162" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1258" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1354" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1450" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1546" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><g><g transform="translate(60,0)"><rect x="0" y="222" width="420" height="140" rx="18" fill="#5f7f7a"/><rect x="30" y="238" width="48" height="52" rx="5" fill="#9db5b0"/><rect x="88" y="238" width="48" height="52" rx="5" fill="#9db5b0"/><rect x="146" y="238" width="48" height="52" rx="5" fill="#9db5b0"/><rect x="204" y="238" width="48" height="52" rx="5" fill="#9db5b0"/><rect x="262" y="238" width="48" height="52" rx="5" fill="#9db5b0"/><rect x="320" y="238" width="48" height="52" rx="5" fill="#9db5b0"/><path d="M382 238 H398 Q410 238 410 252 V300 H382 Z" fill="#9db5b0"/><rect x="10" y="306" width="400" height="5" rx="2" fill="#9db5b0" opacity=".45"/><circle cx="85" cy="365" r="28" fill="#3b5552"/><circle cx="85" cy="365" r="15.400000000000002" fill="#8aa39e"/><circle cx="85" cy="365" r="5.04" fill="#3b5552"/><circle cx="330" cy="365" r="28" fill="#3b5552"/><circle cx="330" cy="365" r="15.400000000000002" fill="#8aa39e"/><circle cx="330" cy="365" r="5.04" fill="#3b5552"/></g><g transform="translate(560,0)"><rect x="0" y="205" width="205" height="160" rx="6" fill="#5f7f7a"/><rect x="12" y="218" width="181" height="6" rx="3" fill="#9db5b0" opacity=".5"/><path d="M210 365 V245 Q210 238 217 238 H262 Q276 238 284 252 L306 312 Q312 326 312 340 V365 Z" fill="#5f7f7a"/><path d="M222 252 H258 Q266 252 271 262 L287 304 H222 Z" fill="#9db5b0"/><rect x="204" y="352" width="112" height="13" rx="3" fill="#5f7f7a"/><circle cx="58" cy="368" r="27" fill="#3b5552"/><circle cx="58" cy="368" r="14.850000000000001" fill="#8aa39e"/><circle cx="58" cy="368" r="4.859999999999999" fill="#3b5552"/><circle cx="150" cy="368" r="27" fill="#3b5552"/><circle cx="150" cy="368" r="14.850000000000001" fill="#8aa39e"/><circle cx="150" cy="368" r="4.859999999999999" fill="#3b5552"/><circle cx="262" cy="368" r="27" fill="#3b5552"/><circle cx="262" cy="368" r="14.850000000000001" fill="#8aa39e"/><circle cx="262" cy="368" r="4.859999999999999" fill="#3b5552"/></g><g transform="translate(960,0)"><path d="M0 362 V318 Q0 308 10 308 H118 L150 268 Q157 260 170 260 H210 Q222 260 229 270 L252 304 Q270 308 272 324 V362 Z" fill="#5f7f7a"/><path d="M160 274 H186 V304 H134 Z M194 274 H208 Q215 274 220 281 L236 304 H194 Z" fill="#9db5b0"/><circle cx="56" cy="364" r="25" fill="#3b5552"/><circle cx="56" cy="364" r="13.750000000000002" fill="#8aa39e"/><circle cx="56" cy="364" r="4.5" fill="#3b5552"/><circle cx="218" cy="364" r="25" fill="#3b5552"/><circle cx="218" cy="364" r="13.750000000000002" fill="#8aa39e"/><circle cx="218" cy="364" r="4.5" fill="#3b5552"/></g><g transform="translate(1290,0)"><path d="M0 362 V334 Q0 322 14 318 L56 310 L92 280 Q100 274 112 274 H170 Q182 274 190 282 L218 310 L240 316 Q252 320 252 334 V362 Z" fill="#5f7f7a"/><path d="M104 288 H138 V308 H76 Z M146 288 H168 Q176 288 182 294 L196 308 H146 Z" fill="#9db5b0"/><circle cx="56" cy="364" r="23" fill="#3b5552"/><circle cx="56" cy="364" r="12.65" fill="#8aa39e"/><circle cx="56" cy="364" r="4.14" fill="#3b5552"/><circle cx="198" cy="364" r="23" fill="#3b5552"/><circle cx="198" cy="364" r="12.65" fill="#8aa39e"/><circle cx="198" cy="364" r="4.14" fill="#3b5552"/></g></g></svg></div>
+<div class="wrap">
+<header class="hero">
+  <div class="scene" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice"><g opacity=".55"><rect x="0" y="270" width="62" height="120" fill="#284845"/><rect x="70" y="210" width="62" height="180" fill="#284845"/><rect x="120" y="300" width="62" height="90" fill="#284845"/><rect x="210" y="180" width="62" height="210" fill="#284845"/><rect x="260" y="250" width="62" height="140" fill="#284845"/><rect x="340" y="220" width="62" height="170" fill="#284845"/><rect x="420" y="290" width="62" height="100" fill="#284845"/><rect x="470" y="160" width="62" height="230" fill="#284845"/><rect x="560" y="240" width="62" height="150" fill="#284845"/><rect x="640" y="270" width="62" height="120" fill="#284845"/><rect x="700" y="190" width="62" height="200" fill="#284845"/><rect x="780" y="230" width="62" height="160" fill="#284845"/><rect x="860" y="280" width="62" height="110" fill="#284845"/><rect x="930" y="200" width="62" height="190" fill="#284845"/><rect x="1010" y="250" width="62" height="140" fill="#284845"/><rect x="1080" y="170" width="62" height="220" fill="#284845"/><rect x="1160" y="260" width="62" height="130" fill="#284845"/><rect x="1230" y="220" width="62" height="170" fill="#284845"/><rect x="1300" y="290" width="62" height="100" fill="#284845"/><rect x="1380" y="190" width="62" height="200" fill="#284845"/><rect x="1450" y="240" width="62" height="150" fill="#284845"/><rect x="1530" y="270" width="62" height="120" fill="#284845"/></g><rect x="0" y="392" width="1600" height="28" fill="#0F1C1D"/><rect x="10" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="106" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="202" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="298" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="394" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="490" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="586" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="682" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="778" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="874" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="970" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1066" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1162" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1258" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1354" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1450" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><rect x="1546" y="406" width="44" height="4" rx="2" fill="#ED8948" opacity=".8"/><g transform="translate(470,118) scale(.7)"><g transform="translate(60,0)"><rect x="0" y="222" width="420" height="140" rx="18" fill="#3B625D"/><rect x="30" y="238" width="48" height="52" rx="5" fill="#5E8C85"/><rect x="88" y="238" width="48" height="52" rx="5" fill="#5E8C85"/><rect x="146" y="238" width="48" height="52" rx="5" fill="#5E8C85"/><rect x="204" y="238" width="48" height="52" rx="5" fill="#5E8C85"/><rect x="262" y="238" width="48" height="52" rx="5" fill="#5E8C85"/><rect x="320" y="238" width="48" height="52" rx="5" fill="#5E8C85"/><path d="M382 238 H398 Q410 238 410 252 V300 H382 Z" fill="#5E8C85"/><rect x="10" y="306" width="400" height="5" rx="2" fill="#5E8C85" opacity=".45"/><circle cx="85" cy="365" r="28" fill="#0F1C1D"/><circle cx="85" cy="365" r="15.400000000000002" fill="#7FA39C"/><circle cx="85" cy="365" r="5.04" fill="#0F1C1D"/><circle cx="330" cy="365" r="28" fill="#0F1C1D"/><circle cx="330" cy="365" r="15.400000000000002" fill="#7FA39C"/><circle cx="330" cy="365" r="5.04" fill="#0F1C1D"/></g><g transform="translate(560,0)"><rect x="0" y="205" width="205" height="160" rx="6" fill="#3B625D"/><rect x="12" y="218" width="181" height="6" rx="3" fill="#5E8C85" opacity=".5"/><path d="M210 365 V245 Q210 238 217 238 H262 Q276 238 284 252 L306 312 Q312 326 312 340 V365 Z" fill="#3B625D"/><path d="M222 252 H258 Q266 252 271 262 L287 304 H222 Z" fill="#5E8C85"/><rect x="204" y="352" width="112" height="13" rx="3" fill="#3B625D"/><circle cx="58" cy="368" r="27" fill="#0F1C1D"/><circle cx="58" cy="368" r="14.850000000000001" fill="#7FA39C"/><circle cx="58" cy="368" r="4.859999999999999" fill="#0F1C1D"/><circle cx="150" cy="368" r="27" fill="#0F1C1D"/><circle cx="150" cy="368" r="14.850000000000001" fill="#7FA39C"/><circle cx="150" cy="368" r="4.859999999999999" fill="#0F1C1D"/><circle cx="262" cy="368" r="27" fill="#0F1C1D"/><circle cx="262" cy="368" r="14.850000000000001" fill="#7FA39C"/><circle cx="262" cy="368" r="4.859999999999999" fill="#0F1C1D"/></g><g transform="translate(960,0)"><path d="M0 362 V318 Q0 308 10 308 H118 L150 268 Q157 260 170 260 H210 Q222 260 229 270 L252 304 Q270 308 272 324 V362 Z" fill="#3B625D"/><path d="M160 274 H186 V304 H134 Z M194 274 H208 Q215 274 220 281 L236 304 H194 Z" fill="#5E8C85"/><circle cx="56" cy="364" r="25" fill="#0F1C1D"/><circle cx="56" cy="364" r="13.750000000000002" fill="#7FA39C"/><circle cx="56" cy="364" r="4.5" fill="#0F1C1D"/><circle cx="218" cy="364" r="25" fill="#0F1C1D"/><circle cx="218" cy="364" r="13.750000000000002" fill="#7FA39C"/><circle cx="218" cy="364" r="4.5" fill="#0F1C1D"/></g><g transform="translate(1290,0)"><path d="M0 362 V334 Q0 322 14 318 L56 310 L92 280 Q100 274 112 274 H170 Q182 274 190 282 L218 310 L240 316 Q252 320 252 334 V362 Z" fill="#3B625D"/><path d="M104 288 H138 V308 H76 Z M146 288 H168 Q176 288 182 294 L196 308 H146 Z" fill="#5E8C85"/><circle cx="56" cy="364" r="23" fill="#0F1C1D"/><circle cx="56" cy="364" r="12.65" fill="#7FA39C"/><circle cx="56" cy="364" r="4.14" fill="#0F1C1D"/><circle cx="198" cy="364" r="23" fill="#0F1C1D"/><circle cx="198" cy="364" r="12.65" fill="#7FA39C"/><circle cx="198" cy="364" r="4.14" fill="#0F1C1D"/></g></g></svg></div>
+  <div class="top">
+    <div class="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 140" role="img" aria-label="BRN Frotas">
+<polygon points="6,30 44,14 44,114 6,130" fill="#ED8948"/>
+<polygon points="44,14 84,30 84,130 44,114" fill="#C9692B"/>
+<polygon points="84,30 122,14 122,114 84,130" fill="#F4A36C"/>
+<g stroke="#fff" stroke-opacity=".28" stroke-width="1.4"><path d="M6 62 L44 46 L84 62 L122 46"/><path d="M6 96 L44 80 L84 96 L122 80"/></g>
+<path d="M20 112 C 34 104, 30 84, 50 82 S 74 92, 80 74 S 92 52, 103 47" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 9"/>
+<circle cx="20" cy="112" r="6.5" fill="#fff"/><circle cx="20" cy="112" r="2.8" fill="#C9692B"/>
+<path d="M103 6 a17 17 0 0 1 17 17 c0 13-17 30-17 30 s-17-17-17-30 a17 17 0 0 1 17-17z" fill="#fff"/>
+<circle cx="103" cy="23" r="6.5" fill="#ED8948"/>
+<text x="148" y="86" font-family="Segoe UI,system-ui,-apple-system,Arial,sans-serif" font-size="74" font-weight="800" letter-spacing="2" fill="#fff">BRN</text>
+<text x="326" y="86" font-family="Segoe UI,system-ui,-apple-system,Arial,sans-serif" font-size="40" font-weight="300" letter-spacing="3" fill="#ED8948">FROTAS</text>
+<text x="151" y="118" font-family="Segoe UI,system-ui,-apple-system,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing="3" fill="#fff" fill-opacity=".72">TELEMETRIA · MANUTENÇÃO · CUSTOS</text>
+</svg></div>
+    <div class="per">Período<b id="perTxt">–</b><span id="srcTxt">Fonte: gold do Postgres (Supabase) · dados fictícios</span><br><button class="themebtn" id="themeBtn" type="button">Tema claro/escuro</button><button class="fbtn" id="frotaBtn" type="button" title="Abrir a tabela da frota inteira"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5h18M3 12h18M3 19h18"/></svg>Frota</button><button class="fbtn gbtn" id="guiaBtn" type="button" title="Abrir o guia de uso e leitura do painel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4M12 17h.01"/></svg>Guia</button></div>
+  </div>
+  <div>
+    <h1 id="heroT">–</h1>
+    <p id="heroP"></p>
+  </div>
+</header>
+
+<div class="tabs" role="tablist" aria-label="Visão">
+  <button type="button" role="tab" data-tab="M"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Manutenção</button>
+  <button type="button" role="tab" data-tab="U"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17h2l2-6h8l2 6h4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Utilização</button>
+  <button type="button" role="tab" data-tab="A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>Alertas</button>
+  <button type="button" role="tab" data-tab="C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5c-.8-1.4-2.6-2.3-5-2.3-3 0-5 1.5-5 3.6 0 5 10 2.6 10 7.6 0 2.1-2.2 3.7-5.2 3.7-2.5 0-4.4-1-5.3-2.6"/></svg>Custos</button>
+</div>
+
+<div class="filters" role="group" aria-label="Filtros" id="filtros">
+  <button class="ftog" id="fTog" type="button">Filtros <span id="fResumo"></span></button>
+  <label class="f">De<input type="date" id="fDe"></label>
+  <label class="f">Até<input type="date" id="fAte"></label>
+  <label class="f">Regional<select id="fReg"></select></label>
+  <label class="f">Centro de custo<select id="fCC"></select></label>
+  <label class="f">Tipo de veículo<select id="fTp"></select></label>
+  <button class="reset" id="btnReset" type="button">Limpar filtros</button>
+  <button class="xbtn" id="btnXls" type="button" title="Baixar em Excel a tabela da aba aberta, com os filtros atuais"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M9 9l6 6M15 9l-6 6"/></svg> Exportar Excel</button>
+</div>
+<div class="note" id="note"></div>
+
+<!-- ============================ MANUTENÇÃO ============================ -->
+<div id="viewM" hidden>
+  <div class="rks" id="mK"></div>
+  <div class="grid2">
+    <div class="sec"><div class="sh"><h2>Onde estão as OS abertas</h2><span class="aside">etapa atual · posição na data de referência</span></div><p class="sub">Etapa calculada pelo banco (coluna GENERATED) a partir da última data preenchida. Os 6 status da planilha.</p><div id="mFun"></div></div>
+    <div class="sec"><div class="sh"><h2>SLA por etapa</h2><span class="aside">média × meta (traço) · 8 etapas</span></div><p class="sub">OS abertas no período com as duas datas da etapa preenchidas. Passe o mouse para ver o p90 e o % na meta.</p><div id="mSla"></div></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h2>Fila priorizada</h2><span class="aside" id="mFilaAs"></span></div>
+    <p class="sub">Ordem: atrasadas → criticidade → dias parado. OS abertas, independente do período.</p>
+    <div class="chips" id="mChips"></div>
+    <div class="tsc"><table class="mt" id="mFila"></table></div>
+  </div>
+  <div class="grid2">
+    <div class="sec"><div class="sh"><h2>Custo por sistema</h2><span class="aside">cinza = orçado · laranja = negociado</span></div><p class="sub">OS abertas no período (preventiva entra como Motor, como na planilha).</p><div id="mSis"></div></div>
+    <div class="sec"><div class="sh"><h2>Oficinas: orçado × negociado</h2><span class="aside">negociação</span></div><p class="sub">Quanto cada oficina aceita em relação ao primeiro orçamento.</p><div id="mOfi"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="sec"><div class="sh"><h2>Idade da frota</h2><span class="aside" id="mIdAs">do mais velho para o mais novo</span></div><p class="sub" id="mIdSub"></p><div class="lgt" id="mIdLg"></div><div id="mIdade"></div></div>
+    <div class="sec"><div class="sh"><h2>Dias desde a última manutenção</h2><span class="aside">última OS concluída</span></div><p class="sub" id="mUltSub"></p><div class="lgt" id="mUltLg"></div><div id="mUlt"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="sec"><div class="sh"><h2>Reincidências</h2><span class="aside">mesmo veículo e sistema em até 90 dias</span></div><p class="sub">Calculado com LAG() na view gold.vw_os_situacao. Pode ser serviço mal feito: vale checar garantia.</p><div class="pts" id="mRe"></div></div>
+    <div class="sec"><div class="sh"><h2 id="mCorrT">Condução × manutenção corretiva</h2><span class="aside" id="mCorrAs"></span></div><p class="sub" id="mCorrSub"></p><div id="mCorr"></div></div>
+  </div>
+</div>
+
+<!-- ============================ UTILIZAÇÃO ============================ -->
+<div id="viewU" hidden>
+  <div class="kpis" id="uK"></div>
+  <div class="sec"><div class="sh"><h2>Km rodados por dia</h2><span class="aside">fim de semana em cinza</span></div><div id="uDia"></div></div>
+  <div class="grid2">
+    <div class="sec"><div class="sh"><h2>Km rodados pelo Brasil</h2><span class="aside">bolha = cidade · cor = região</span></div><p class="sub">Um centro de custo por capital, vigente no dia da viagem. Clique numa região para filtrar o painel.</p><div id="uCC"></div></div>
+    <div class="sec"><h2>Tempo de motor ocioso</h2><p class="sub">% do tempo de motor ligado com o veículo parado, por centro de custo.</p><div id="uOc"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="sec"><h2>Km por dia da semana</h2><p class="sub">Média por dia no período.</p><div id="uSem"></div></div>
+    <div class="sec"><h2>Veículos sem uso</h2><p class="sub">Dias sem nenhuma viagem, entre os veículos com rastreador (generate_series na view gold.vw_dias_sem_uso).</p><div id="uSemUso"></div></div>
+  </div>
+  <div class="sec"><div class="sh"><h2>Veículos</h2><div class="seg" id="uVista"><button data-vista="t" class="on" type="button">Tabela</button><button data-vista="g" type="button">Galeria</button></div></div>
+    <p class="sub">Clique na placa (ou no cartão) para abrir a ficha do veículo. Na tabela, clique no título da coluna para ordenar.</p>
+    <div class="tblbar"><input type="search" id="uBusca" placeholder="Buscar placa, modelo, centro…"></div>
+    <div class="tsc" id="uTabWrap"><table class="mt" id="uTab"></table></div><div class="gal" id="uGal" hidden></div></div>
+</div>
+
+<!-- ============================== ALERTAS ============================= -->
+<div id="viewA" hidden>
+  <div class="acards" id="aK"></div>
+  <div class="grid2 g-12">
+    <div class="sec"><div class="sh"><h2>Maiores velocidades</h2><span class="aside" id="aVelAs"></span></div><div id="aVel"></div></div>
+    <div class="sec"><div class="sh"><h2>Quando os alertas acontecem</h2><span class="aside">dia da semana × hora</span></div><p class="sub" id="aHeatSub"></p><div id="aHeat"></div></div>
+  </div>
+  <div class="sec"><div class="sh"><h2>Ocorrências por dia</h2><span class="aside">por tipo de alerta</span></div><div class="lgt" id="aLg"></div><div id="aDia"></div></div>
+  <div class="sec"><div class="sh"><h2>Pontos de atenção</h2><span class="aside">período completo · todos os centros</span></div><p class="sub">Trechos (rua, bairro e cidade, sem o número) que mais concentram excesso de velocidade e motor ocioso. O endereço vem da silver; o regex agrupa os números da mesma via.</p><div class="pts" id="aPts"></div></div>
+  <div class="grid2">
+    <div class="sec"><div class="sh"><h2>Ranking de veículos</h2><span class="aside">top 20</span></div><div id="aRank"></div></div>
+    <div class="sec"><div class="sh"><h2>Alertas pelo Brasil</h2><span class="aside">alertas a cada 100 km</span></div><p class="sub">Taxa por km, para comparar cidades com rodagens diferentes. Clique numa região para filtrar o painel.</p><div id="aCC"></div></div>
+  </div>
+</div>
+
+<!-- =============================== CUSTOS ============================= -->
+<div id="viewC" hidden>
+  <div class="kpis" id="cK"></div>
+  <div class="sec"><div class="sh"><h2>Custo de manutenção por mês</h2><span class="aside">serviço + peças + locação de substitutos · mês da abertura da OS</span></div><div class="lgt" id="cLg"></div><div id="cMes"></div></div>
+  <div class="grid2">
+    <div class="sec"><h2>Custo por centro de custo</h2><p class="sub">Centro de custo vigente na data da OS.</p><div id="cCC"></div></div>
+    <div class="sec"><h2>Custo por km, por tipo de veículo</h2><p class="sub">Custo total das OS ÷ km rodados no período.</p><div id="cTp"></div></div>
+  </div>
+  <div class="sec"><div class="sh"><h2>Veículo parado: o custo além do conserto</h2><span class="aside" id="cParAs"></span></div><p class="sub">OS com veículo substituto alugado. Custo da locação = diária × dias parado, ou o valor fixo do período (calculado na view gold.vw_os_situacao).</p><div class="tsc"><table class="mt" id="cPar"></table></div></div>
+  <div class="sec"><div class="sh"><h2>Veículos que mais custaram</h2><span class="aside">top 15 no período</span></div><div class="tsc"><table class="mt" id="cTab"></table></div></div>
+</div>
+
+<ul class="foot" id="foot"></ul>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Detalhe do veículo" aria-hidden="true"><div class="dh" id="d-head"><div><div class="eye" id="d-eye"></div><h3 id="d-title"></h3><div id="d-badges"></div></div><button class="x" id="d-close" type="button" aria-label="Fechar">×</button></div><div class="db" id="d-body"></div></aside>
+
+<div class="fm-scrim" id="fmScrim" aria-hidden="true">
+ <div class="fm-box" role="dialog" aria-modal="true" aria-label="Tabela da frota">
+  <div class="fm-hd"><div><h3>Frota completa</h3><p id="fmSub"></p></div><button class="x" id="fmClose" type="button" aria-label="Fechar">×</button></div>
+  <div class="fm-tools">
+   <label class="f">Placa, modelo, chassi ou contrato<input type="search" id="fmQ" placeholder="Buscar…"></label>
+   <label class="f">Tipo<select id="fmGr"></select></label>
+   <label class="f">Filial<select id="fmFil"></select></label>
+   <label class="f">Centro de custo<select id="fmCC"></select></label>
+   <label class="f">Rastreador<select id="fmCt"></select></label>
+   <button class="reset" id="fmReset" type="button">Limpar</button>
+   <button class="xbtn" id="fmXls" type="button" title="Baixar em Excel a tabela com os filtros atuais"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M9 9l6 6M15 9l-6 6"/></svg> Exportar Excel</button>
+  </div>
+  <div class="fm-sum" id="fmSum"></div>
+  <div class="fm-tb"><table id="fmTb"></table></div>
+  <div class="fm-ft" id="fmFt"></div>
+ </div>
+</div>
+
+<div class="gd-scrim" id="gdScrim" aria-hidden="true">
+ <div class="gd-box" role="dialog" aria-modal="true" aria-label="Guia do painel">
+  <div class="fm-hd gd-hd"><div><h3>Guia do Painel — BRN Frotas</h3><p>Manutenção, Utilização, Alertas e Custos · dados fictícios · telemetria de <span class="gd-per"></span></p></div>
+   <div class="gd-act"><button class="xbtn" id="gdPdf" type="button" title="Salvar o guia em PDF ou imprimir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg> Baixar guia (PDF)</button><button class="x" id="gdClose" type="button" aria-label="Fechar">×</button></div></div>
+  <div class="gd-main">
+   <nav class="gd-nav" aria-label="Índice do guia">
+    <a href="#gd1">1. Para que serve</a><a href="#gd2">2. Topo da tela</a><a href="#gd3">3. Filtros</a><a href="#gd4">4. Aba Manutenção</a><a href="#gd5">5. Aba Utilização</a><a href="#gd6">6. Aba Alertas</a><a href="#gd7">7. Aba Custos</a><a href="#gd8">8. Painel do veículo</a><a href="#gd9">9. Frota completa</a><a href="#gd10">10. Exportar para Excel</a><a href="#gd11">11. De onde vêm os dados</a><a href="#gd12">12. Regras de negócio</a><a href="#gd13">13. Glossário</a>
+   </nav>
+   <div class="gd-doc" id="gdDoc">
+    <div class="gd-print-hd"><h1>Guia do Painel — BRN Frotas</h1><p>Manutenção, Utilização, Alertas e Custos · telemetria de <span class="gd-per"></span></p></div>
+
+    <section id="gd1"><h2>1. Para que serve</h2>
+     <p>O painel junta duas fontes numa visão só: o <b>rastreador</b> (como a frota rodou e foi conduzida) e a <b>planilha de acompanhamento de manutenção</b> (onde cada veículo está na oficina e quanto custa). Com isso dá para responder, sem abrir planilha nenhuma:</p>
+     <ul>
+      <li>quais veículos estão parados, em que etapa e há quanto tempo;</li>
+      <li>qual etapa do processo atrasa mais (o gargalo);</li>
+      <li>quanto custa um veículo parado, somando o aluguel do substituto;</li>
+      <li>quem dirige de forma mais brusca e se isso aparece na conta da oficina;</li>
+      <li>onde e quando os alertas acontecem.</li>
+     </ul>
+     <div class="gd-call blue"><b>Dados fictícios.</b> Placas, chassis, modelos, motoristas e oficinas são gerados por um script com semente fixa. Só as cidades são reais. Os números servem para demonstrar o pipeline, não descrevem nenhuma empresa.</div>
+    </section>
+
+    <section id="gd2"><h2>2. Topo da tela</h2>
+     <table class="gd-t"><tr><th>Elemento</th><th>O que faz</th></tr>
+      <tr><td><b>Manutenção | Utilização | Alertas | Custos</b></td><td>Trocam a visão. O painel abre na Manutenção.</td></tr>
+      <tr><td><span class="gd-k or">Frota</span></td><td>Abre a tabela da frota inteira, com busca, filtros e exportação (seção 9).</td></tr>
+      <tr><td><span class="gd-k or">Guia</span></td><td>Abre este guia.</td></tr>
+      <tr><td><b>Tema claro/escuro</b></td><td>Só muda as cores. A escolha fica salva neste navegador.</td></tr>
+      <tr><td><b>Período</b></td><td>Manutenção mostra a posição na data de referência (último dia com telemetria). As outras abas usam o período dos filtros.</td></tr>
+     </table>
+    </section>
+
+    <section id="gd3"><h2>3. Filtros</h2>
+     <p>Tudo o que estiver filtrado muda cartões, gráficos, tabelas <b>e o Excel exportado</b>. No celular a barra fica recolhida: toque em "Filtros".</p>
+     <table class="gd-t"><tr><th>Filtro</th><th>O que faz</th></tr>
+      <tr><td><b>De / Até</b></td><td>Período da telemetria e das OS (pela data de abertura). Abre nos últimos 90 dias.</td></tr>
+      <tr><td><b>Regional</b></td><td>Região do país (Norte, Nordeste, Centro-Oeste, Sudeste, Sul). Também dá para escolher clicando no mapa.</td></tr>
+      <tr><td><b>Centro de custo</b></td><td>Uma capital. A lista acompanha a regional escolhida.</td></tr>
+      <tr><td><b>Tipo de veículo</b></td><td>Leve, Pick-up, Van, Caminhão, Ônibus ou Moto.</td></tr>
+      <tr><td><b>Limpar filtros</b></td><td>Volta ao padrão (últimos 90 dias, frota toda).</td></tr>
+     </table>
+     <div class="gd-tip">O centro de custo de uma viagem ou OS é o que estava <b>vigente naquela data</b>. Se o veículo trocou de centro no meio do período, cada parte fica no centro certo.</div>
+    </section>
+
+    <section id="gd4"><h2>4. Aba Manutenção</h2>
+     <ol>
+      <li><b>Cartões:</b> veículos em manutenção, parados, OS atrasadas, entregas no prazo, reincidências e economia na negociação. O anel mostra o percentual-chave; a minilinha, a evolução no período.</li>
+      <li><b>Onde estão as OS abertas:</b> quantas OS estão em cada um dos 6 status (Em agendamento, Em diagnóstico, Aguardando aprovação, Aguardando peças, Em manutenção, Concluída). A etapa é calculada pelo banco a partir da última data preenchida.</li>
+      <li><b>SLA por etapa:</b> as 8 etapas da planilha, da abertura da OS à saída da oficina. A barra é a média de dias; o traço é a meta. Barra vermelha = acima da meta. Passe o mouse para ver o p90 (9 em cada 10 OS levam até esse tempo) e o % dentro da meta.</li>
+      <li><b>Fila priorizada:</b> OS abertas, em ordem de urgência: atrasadas primeiro, depois criticidade e dias parado. Os botões acima filtram por etapa.</li>
+      <li><b>Custo por sistema e Oficinas:</b> cinza = orçado, laranja = negociado. Nas oficinas, o percentual mostra quanto o valor final ficou abaixo do primeiro orçamento.</li>
+      <li><b>Idade da frota e Dias desde a última manutenção:</b> listas do mais velho para o mais novo e de quem está há mais tempo sem passar pela oficina. Cores: 8 anos ou mais em laranja; mais de 180 dias sem manutenção em vermelho.</li>
+      <li><b>Reincidências:</b> o mesmo veículo voltou pelo mesmo sistema em até 90 dias (preventiva não conta).</li>
+      <li><b>Condução × manutenção corretiva:</b> os veículos são divididos em faixas pelos alertas bruscos a cada 100 km. A coluna é o custo corretivo médio por veículo de cada faixa.</li>
+     </ol>
+    </section>
+
+    <section id="gd5"><h2>5. Aba Utilização</h2>
+     <ol>
+      <li><b>Indicadores:</b> veículos com uso, viagens, km, horas de motor ligado, % do tempo ligado parado e km por veículo-dia.</li>
+      <li><b>Km por dia:</b> fim de semana em cinza.</li>
+      <li><b>Km rodados pelo Brasil:</b> bolha = capital (centro de custo), tamanho = km; a cor do estado mostra o volume da região. Clique numa região para filtrar.</li>
+      <li><b>Motor ocioso, Km por dia da semana e Veículos sem uso</b> (dias sem nenhuma viagem entre os que têm rastreador).</li>
+      <li><b>Veículos:</b> tabela ordenável ou <b>galeria</b> com o desenho de cada veículo (tipo, cor e placa do cadastro). Clique na placa ou no desenho para abrir o painel do veículo.</li>
+     </ol>
+    </section>
+
+    <section id="gd6"><h2>6. Aba Alertas</h2>
+     <ol>
+      <li><b>Cartões por tipo de alerta:</b> clique num cartão para filtrar a aba inteira por aquele tipo. Clique de novo para voltar.</li>
+      <li><b>Maiores velocidades:</b> o velocímetro mostra a máxima do filtro; a lista, o maior excesso de cada veículo.</li>
+      <li><b>Quando os alertas acontecem:</b> mapa de calor dia da semana × hora.</li>
+      <li><b>Pontos de atenção:</b> ruas que mais concentram excesso de velocidade e motor ligado parado.</li>
+      <li><b>Ranking de veículos</b> e <b>Alertas pelo Brasil</b> (alertas a cada 100 km, para comparar cidades que rodam diferente).</li>
+     </ol>
+    </section>
+
+    <section id="gd7"><h2>7. Aba Custos</h2>
+     <p>O custo de uma OS soma três partes: <b>serviço</b> (valor negociado com a oficina), <b>peças</b> (compradas à parte, pela requisição) e <b>locação do substituto</b> (quando o veículo parado foi trocado por um alugado).</p>
+     <ul>
+      <li><b>Custo por mês</b> empilha as três partes. <b>Custo por km</b> divide o custo pelos km rodados do tipo de veículo.</li>
+      <li><b>Veículo parado:</b> as OS com substituto, com diária ou período, dias de locação e o custo total do veículo parado.</li>
+      <li><b>Veículos que mais custaram</b>, com o custo em relação à FIPE.</li>
+     </ul>
+    </section>
+
+    <section id="gd8"><h2>8. Painel do veículo</h2>
+     <p>Abre clicando em qualquer placa (tabelas, rankings, galeria, Frota). Mostra o desenho do veículo, o cadastro (chassi, filial, centro de custo, contrato, FIPE), a utilização e os alertas do período filtrado e o <b>histórico completo de OS</b>, com o custo de cada uma. Feche pelo × ou clicando fora.</p>
+    </section>
+
+    <section id="gd9"><h2>9. Frota completa</h2>
+     <p>Tabela com os 123 veículos do cadastro: busca por placa, modelo, chassi ou contrato; filtros de tipo, filial, centro de custo e rastreador; ordenação pelo título da coluna; resumo com total FIPE e idade média; exportação para Excel.</p>
+    </section>
+
+    <section id="gd10"><h2>10. Exportar para Excel</h2>
+     <p>O botão <b>Exportar Excel</b> baixa um .xlsx com a tabela principal da aba aberta, respeitando os filtros: Manutenção = fila de OS; Utilização = veículos; Alertas = alertas por veículo e tipo; Custos = custo por veículo. O arquivo traz cabeçalho, filtros do Excel, formatos de moeda e data, e uma linha dizendo quais filtros estavam ativos.</p>
+    </section>
+
+    <section id="gd11"><h2>11. De onde vêm os dados</h2>
+     <table class="gd-t"><tr><th>Camada</th><th>O que acontece</th></tr>
+      <tr><td><b>Bronze</b></td><td>Os arquivos chegam como vieram (planilhas do rastreador e de manutenção, cadastros da frota), tudo como texto, um lote por arquivo, com hash para não carregar duas vezes.</td></tr>
+      <tr><td><b>Silver</b></td><td>Tipagem e limpeza: datas e valores digitados como texto, KM em formatos misturados, listas sem acento, nº de requisição em vários formatos, versões repetidas da mesma viagem. O que não pode entrar vai para quarentena com o motivo; viagens impossíveis vão para revisão manual.</td></tr>
+      <tr><td><b>Gold</b></td><td>Modelo estrela (dimensões + fatos) montado por funções SQL. As views deste painel calculam SLA, reincidência, custo do veículo parado, faixas de condução e correlação.</td></tr>
+      <tr><td><b>Pipeline diário</b></td><td>GitHub Actions roda tudo todo dia às 06:17, com testes de qualidade, e publica este painel.</td></tr>
+     </table>
+     <p>Código: <a href="https://github.com/BrunoLima-085/brn-frota-data-platform" target="_blank" rel="noopener">github.com/BrunoLima-085/brn-frota-data-platform</a></p>
+    </section>
+
+    <section id="gd12"><h2>12. Regras de negócio</h2>
+     <table class="gd-t"><tr><th>Regra</th><th>Como é calculada</th></tr>
+      <tr><td>OS aberta</td><td>Sem data de saída da oficina.</td></tr>
+      <tr><td>OS atrasada</td><td>Aberta e com a previsão de saída antes da data de referência.</td></tr>
+      <tr><td>Dias parado</td><td>Da entrada na oficina até a saída (ou até a data de referência).</td></tr>
+      <tr><td>Desconto obtido</td><td>Orçamento − valor negociado.</td></tr>
+      <tr><td>Custo da locação</td><td>Diária × dias parado, ou o valor fixo quando o aluguel é por período.</td></tr>
+      <tr><td>Custo total do veículo parado</td><td>Negociado + peças + locação.</td></tr>
+      <tr><td>Reincidência</td><td>Mesmo veículo e mesmo sistema em até 90 dias, sem contar preventiva.</td></tr>
+      <tr><td>Motor ocioso</td><td>Só paradas de 5 minutos ou mais com o motor ligado.</td></tr>
+      <tr><td>Velocidade de 150 km/h ou mais</td><td>Só entra quando o odômetro confirma o deslocamento.</td></tr>
+      <tr><td>Faixas de condução</td><td>Alertas de freada, aceleração e curva bruscas a cada 100 km: Suave (&lt; 1,5), Moderada (1,5 a 2,5), Brusca (2,5 a 4), Agressiva (4 ou mais). Só veículos com 500 km ou mais.</td></tr>
+     </table>
+    </section>
+
+    <section id="gd13"><h2>13. Glossário</h2>
+     <table class="gd-t"><tr><th>Termo</th><th>Significado</th></tr>
+      <tr><td>SLA</td><td>Prazo combinado para cada etapa do processo de manutenção.</td></tr>
+      <tr><td>p90</td><td>Tempo dentro do qual 9 de cada 10 OS fecham a etapa.</td></tr>
+      <tr><td>FIPE</td><td>Valor de mercado de referência do veículo.</td></tr>
+      <tr><td>Veículo substituto</td><td>Veículo alugado para cobrir o que está parado na oficina.</td></tr>
+      <tr><td>Viagem</td><td>Período de utilização registrado pelo rastreador.</td></tr>
+      <tr><td>Tempo ligado parado (ocioso)</td><td>Tempo com motor ligado e o veículo sem andar.</td></tr>
+      <tr><td>Data de referência</td><td>Último dia com telemetria carregada. Deixa os números reproduzíveis.</td></tr>
+     </table>
+    </section>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div id="tip"></div>
+<script src="dados.js"></script>
+<script src="js/mapa_brasil.js"></script>
+<script src="js/vendor/exceljs.min.js"></script>
+<script src="js/veiculo.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

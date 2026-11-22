@@ -1,0 +1,60 @@
+/* Ajustes do painel da brn-frota-data-platform sobre o estilo base */
+a.fbtn{text-decoration:none}
+.ftog{display:none}
+.vrow{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:7px 2px;border-top:1px solid var(--line);font-size:12.5px}
+.vrow b{font-family:ui-monospace,Consolas,monospace}
+.vrow span{color:var(--ink3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vrow em{font-style:normal;font-weight:800;font-variant-numeric:tabular-nums;color:var(--tred)}
+.gauge{display:block;margin:0 auto 4px;max-width:300px}
+.gauge text{font-family:inherit}
+.hl2{color:var(--tred);font-weight:800}
+.pt-c{font-family:inherit!important;font-size:13.5px!important;white-space:normal}
+.sc .dot{fill:var(--own);fill-opacity:.55;stroke:var(--own)}
+.sc .dot:hover{fill-opacity:1}
+.sc .tr{stroke:var(--ink3);stroke-dasharray:4 4}
+.heat-lg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3);margin-top:6px}
+.heat-lg i{display:inline-block;width:120px;height:9px;border-radius:3px;background:linear-gradient(90deg,color-mix(in srgb,var(--t0) 8%,var(--card)),var(--t0))}
+.empty{color:var(--ink3);font-size:12.5px;padding:12px 2px}
+@media (max-width:760px){.ftog{display:flex}.filters.fcol>*:not(.ftog){display:none!important}}
+.mapa{max-width:640px;margin:0 auto}
+.mapa .uf{stroke:var(--card);stroke-width:1.2;cursor:pointer;transition:opacity .15s}
+.mapa .uf:hover{opacity:.8}
+.mapa .uf.off{opacity:.35}
+.mapa .bolha{fill-opacity:.9;stroke:#fff;stroke-width:2}
+.mapa .cid{font-size:11px;font-weight:700;fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.mapa .cid tspan{font-weight:400;fill:var(--ink2)}
+.mreg{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:6px}
+.mreg .chip{font-size:12px;padding:3px 10px}
+.mreg .chip b{font-size:15px}
+/* painel do veículo, galeria, listas por veículo */
+.mono{font-family:ui-monospace,Consolas,monospace}
+.mplaca{display:inline-flex;flex-direction:column;align-items:stretch;border:1.5px solid #1F2226;border-radius:5px;background:#fff;overflow:hidden;min-width:92px;vertical-align:middle}
+.mplaca .mf{background:#1E4FA0;color:#fff;font-size:7px;font-weight:700;letter-spacing:.12em;text-align:center;padding:1px 0}
+.mplaca .mc{color:#1F2226;font-family:ui-monospace,Consolas,monospace;font-weight:800;font-size:16px;letter-spacing:.08em;text-align:center;padding:1px 8px 2px}
+.mplaca.g{min-width:150px}.mplaca.g .mf{font-size:9px;padding:2px 0}.mplaca.g .mc{font-size:26px;padding:2px 12px 4px}
+.ficha{display:flex;gap:16px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.ficha .fd{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ficha .fd b{font-size:17px}
+.ficha .fd span{font-size:12.5px;color:var(--ink3)}
+.dkpis.d4{grid-template-columns:repeat(2,1fr)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:6px}
+.gcard{all:unset;cursor:pointer;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px;transition:border-color .15s,transform .15s}
+.gcard:hover{border-color:var(--orange);transform:translateY(-2px)}
+.gcard .mplaca{align-self:flex-start;margin-bottom:6px}
+.gcard b{font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gcard .gst{display:flex;justify-content:space-between;gap:6px;margin-top:6px;padding-top:6px;border-top:1px solid var(--line);font-size:11px}
+.gcard .gst em{font-style:normal;color:var(--ink2);font-variant-numeric:tabular-nums}
+.gcard .gst i{font-style:normal;font-weight:700;color:var(--c,var(--ink3))}
+.gcard .gst i.ok{color:var(--tv)}
+.gcard span{font-size:11.5px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vlist{display:flex;flex-direction:column}
+.vl{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr auto;gap:10px;align-items:center;padding:5px 2px;border-top:1px solid var(--line);font-size:12.5px;cursor:pointer}
+.vl:hover{background:var(--bg)}
+.vl .p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vl .p b{font-family:ui-monospace,Consolas,monospace}
+.vl small{color:var(--ink3);font-size:11px}
+.vl .t{height:9px;background:var(--line);border-radius:5px;overflow:hidden}
+.vl .t i{display:block;height:100%;border-radius:5px}
+.vl .n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sh .seg{margin-left:auto}
+.fm-scrim.open,.gd-scrim.open{display:flex}

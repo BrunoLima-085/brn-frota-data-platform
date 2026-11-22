@@ -1,0 +1,5 @@
+openpyxl
+psycopg[binary]
+python-dotenv
+pytest
+tzdata

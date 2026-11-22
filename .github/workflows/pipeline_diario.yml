@@ -1,0 +1,79 @@
+# =========================================================
+# Pipeline diário — roda sozinho na nuvem, sem PC ligado
+# =========================================================
+# Todo dia: gera o dia novo da simulação, carrega no Supabase
+# (bronze -> silver -> gold), roda os testes de qualidade, aplica a
+# retenção da bronze, publica o resumo semanal + status no repositório e
+# publica o dashboard (dashboard/ + dados.js do dia) no GitHub Pages.
+#
+# O commit diário do status mantém o repositório ativo (o GitHub desativa
+# workflows agendados de repositórios públicos sem atividade por 60 dias),
+# e o acesso diário ao banco evita a pausa do Supabase gratuito (7 dias).
+#
+# Configuração (uma vez): Settings > Secrets and variables > Actions >
+#   New repository secret: SUPABASE_DB_URL = connection string (Session pooler)
+# e Settings > Pages > Build and deployment > Source: GitHub Actions
+# =========================================================
+name: Pipeline diário
+
+on:
+  schedule:
+    - cron: "17 9 * * *"     # 06:17 em Fortaleza (09:17 UTC), fora da hora cheia
+  workflow_dispatch: {}      # botão "Run workflow" para rodar na mão
+
+permissions:
+  contents: write            # para o commit do resumo e do status
+  pages: write               # para publicar o dashboard
+  id-token: write            # exigido pelo deploy do GitHub Pages
+
+concurrency:
+  group: pipeline-diario
+  cancel-in-progress: false
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    timeout-minutes: 60
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Testes unitários (pytest)
+        run: python -m pytest -q
+
+      - name: Rodar o pipeline (simulação até ontem)
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: python rodar_pipeline.py --gerar-dados --ate ontem
+
+      - name: Publicar resumo e status
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/status_pipeline.md docs/resumos || true
+          git diff --cached --quiet || git commit -m "chore(pipeline): execução diária $(TZ=America/Fortaleza date +%d/%m/%Y)"
+          git push
+
+      - name: Empacotar o dashboard
+        if: success()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+      - name: Publicar o dashboard no GitHub Pages
+        if: success()
+        id: deploy
+        uses: actions/deploy-pages@v4

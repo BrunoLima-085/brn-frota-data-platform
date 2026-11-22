@@ -1,0 +1,25 @@
+# Credenciais (nunca vão para o repositório)
+.env
+*credenciais*.json
+
+# Gerado localmente pelo gerador e pelo pipeline
+entrada/*
+!entrada/.gitkeep
+saida/*
+!saida/.gitkeep
+
+# Dados do dashboard: gerados a cada execução e publicados no GitHub Pages pelo workflow
+dashboard/dados.js
+
+# Modelo de layout usado como referência (não faz parte do projeto)
+Painel_Frota_BRN.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Excel / sistema
+~$*
+.DS_Store
+Thumbs.db
