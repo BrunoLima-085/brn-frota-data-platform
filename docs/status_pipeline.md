@@ -1,24 +1,24 @@
 # Status do pipeline
 
-- **Última execução:** 25/11/2026 20:51 (horário de Fortaleza)
+- **Última execução:** 26/11/2026 00:43 (horário de Fortaleza)
 - **Resultado:** ✅ sucesso
-- **Simulação até:** 24/11/2026
-- **Duração:** 214 s (gerar 66 s, bronze 98 s, frota 2 s, telemetria 3 s, manutencao 2 s, gold 14 s, testes 11 s, retencao 2 s, resumo 3 s, dashboard 12 s)
+- **Simulação até:** 25/11/2026
+- **Duração:** 226 s (gerar 84 s, bronze 101 s, frota 2 s, telemetria 9 s, manutencao 3 s, gold 14 s, testes 5 s, retencao 1 s, resumo 2 s, dashboard 6 s)
 
 | Indicador | Valor |
 | --- | --- |
-| Período dos dados | 01/05/2026 a 24/11/2026 |
-| Viagens (gold) | 98.513 |
-| Alertas (gold) | 76.226 |
-| Ordens de serviço (gold) | 201 |
-| Outliers aguardando revisão | 32 |
+| Período dos dados | 01/05/2026 a 25/11/2026 |
+| Viagens (gold) | 99.074 |
+| Alertas (gold) | 76.671 |
+| Ordens de serviço (gold) | 202 |
+| Outliers aguardando revisão | 33 |
 | OS em quarentena | 3 |
-| Tamanho do banco | 253 MB |
+| Tamanho do banco | 254 MB |
 
 ## Testes de qualidade
 
 ```
-Relatório de qualidade — 25/11/2026 23:51:14
+Relatório de qualidade — 26/11/2026 03:43:45
 
 [OK    ] gold   | fato_alertas = silver.alertas menos a regra do motor ocioso
 [OK    ] gold   | fato_utilizacao = silver.viagens
@@ -33,17 +33,17 @@ Relatório de qualidade — 25/11/2026 23:51:14
 [AVISO ] gold   | OS com veículo substituto sem placa do substituto -> 3
 [OK    ] gold   | OS com status digitado diferente da etapa pelas datas
 [OK    ] gold   | veículo ativo sem alocação vigente
-[AVISO ] silver | outliers aguardando revisão (Pendente) -> 32
+[AVISO ] silver | outliers aguardando revisão (Pendente) -> 33
 [AVISO ] silver | OS em quarentena -> 3
 
 Contagens:
-  bronze: 110
-  silver.alertas: 82.093
-  silver.viagens: 98.513
-  silver.os_manutencao: 201
-  gold.fato_alertas: 76.226
-  gold.fato_utilizacao: 98.513
-  gold.fato_manutencao: 201
+  bronze: 113
+  silver.alertas: 82.562
+  silver.viagens: 99.074
+  silver.os_manutencao: 202
+  gold.fato_alertas: 76.671
+  gold.fato_utilizacao: 99.074
+  gold.fato_manutencao: 202
 
 15 testes | 12 OK | 3 aviso(s) | 0 crítico(s) falhando
 ```
