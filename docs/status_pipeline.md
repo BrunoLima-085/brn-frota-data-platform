@@ -1,24 +1,24 @@
 # Status do pipeline
 
-- **Última execução:** 26/11/2026 21:05 (horário de Fortaleza)
+- **Última execução:** 27/11/2026 00:45 (horário de Fortaleza)
 - **Resultado:** ✅ sucesso
-- **Simulação até:** 25/11/2026
-- **Duração:** 215 s (gerar 88 s, bronze 97 s, frota 2 s, telemetria 2 s, manutencao 1 s, gold 13 s, testes 3 s, retencao 1 s, resumo 2 s, dashboard 6 s)
+- **Simulação até:** 26/11/2026
+- **Duração:** 200 s (gerar 55 s, bronze 96 s, frota 2 s, telemetria 11 s, manutencao 5 s, gold 15 s, testes 5 s, retencao 2 s, resumo 3 s, dashboard 7 s)
 
 | Indicador | Valor |
 | --- | --- |
-| Período dos dados | 01/05/2026 a 25/11/2026 |
-| Viagens (gold) | 99.074 |
-| Alertas (gold) | 76.671 |
-| Ordens de serviço (gold) | 202 |
+| Período dos dados | 01/05/2026 a 26/11/2026 |
+| Viagens (gold) | 99.603 |
+| Alertas (gold) | 77.117 |
+| Ordens de serviço (gold) | 204 |
 | Outliers aguardando revisão | 33 |
 | OS em quarentena | 3 |
-| Tamanho do banco | 255 MB |
+| Tamanho do banco | 256 MB |
 
 ## Testes de qualidade
 
 ```
-Relatório de qualidade — 27/11/2026 00:04:54
+Relatório de qualidade — 27/11/2026 03:45:18
 
 [OK    ] gold   | fato_alertas = silver.alertas menos a regra do motor ocioso
 [OK    ] gold   | fato_utilizacao = silver.viagens
@@ -37,13 +37,13 @@ Relatório de qualidade — 27/11/2026 00:04:54
 [AVISO ] silver | OS em quarentena -> 3
 
 Contagens:
-  bronze: 113
-  silver.alertas: 82.562
-  silver.viagens: 99.074
-  silver.os_manutencao: 202
-  gold.fato_alertas: 76.671
-  gold.fato_utilizacao: 99.074
-  gold.fato_manutencao: 202
+  bronze: 116
+  silver.alertas: 83.048
+  silver.viagens: 99.603
+  silver.os_manutencao: 204
+  gold.fato_alertas: 77.117
+  gold.fato_utilizacao: 99.603
+  gold.fato_manutencao: 204
 
 15 testes | 12 OK | 3 aviso(s) | 0 crítico(s) falhando
 ```
