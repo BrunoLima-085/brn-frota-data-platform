@@ -1,9 +1,9 @@
 # Status do pipeline
 
-- **Última execução:** 28/11/2026 00:26 (horário de Fortaleza)
+- **Última execução:** 28/11/2026 14:41 (horário de Fortaleza)
 - **Resultado:** ✅ sucesso
 - **Simulação até:** 27/11/2026
-- **Duração:** 187 s (gerar 66 s, bronze 83 s, frota 2 s, telemetria 8 s, manutencao 3 s, gold 13 s, testes 4 s, retencao 1 s, resumo 2 s, dashboard 5 s)
+- **Duração:** 231 s (gerar 86 s, bronze 110 s, frota 2 s, telemetria 3 s, manutencao 2 s, gold 15 s, testes 4 s, retencao 2 s, resumo 3 s, dashboard 7 s)
 
 | Indicador | Valor |
 | --- | --- |
@@ -18,7 +18,7 @@
 ## Testes de qualidade
 
 ```
-Relatório de qualidade — 28/11/2026 03:26:26
+Relatório de qualidade — 28/11/2026 17:40:50
 
 [OK    ] gold   | fato_alertas = silver.alertas menos a regra do motor ocioso
 [OK    ] gold   | fato_utilizacao = silver.viagens
